@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>LED Controller</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+  <h1>LED Colour Controller</h1>
+  <div id="color-picker-container" class="center"></div>
+
+  <h2 id="status">Started LEDs!</h2>
+
+  <div class="row">
+    <div class="column">
+      <div class="center">
+        <div id="color_swatch" class="button"></div>
+
+        <div class="button button-3">
+          <div class="circle"></div>
+          <a href="#" onclick="sendHSVData()">Change Color</a>
+        </div>
+
+        <div class="button button-3">
+          <div class="circle"></div>
+          <a href="#" onclick="playGradient('fade_colour')">Fade Colour</a>
+        </div>
+
+        <input type="number" id="period_time" class='button' value="0.1">
+
+        <div class="button button-3">
+          <div class="circle"></div>
+          <a href="#" onclick="setPeriod()">Set Period</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="center">
+
+      <div class="button button-3">
+        <div class="circle"></div>
+        <a href="#" onclick="playGradient('pride')">Pride Gradient</a>
+      </div>
+      <div class="button button-3">
+        <div class="circle"></div>
+        <a href="#" onclick="playGradient('pan')">Pansexual Gradient</a>
+      </div>
+      <div class="button button-3">
+        <div class="circle"></div>
+        <a href="#" onclick="playGradient('lesbian')">Lesbian Gradient</a>
+      </div>
+      <div class="button button-3">
+        <div class="circle"></div>
+        <a href="#" onclick="playGradient('bi')">Bisexual Gradient</a>
+      </div>
+      <div class="button button-3">
+        <div class="circle"></div>
+        <a href="#" onclick="playGradient('trans')">Transgender Gradient</a>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
+  <script src="/static/main.js" charset="utf-8"></script>
+</body>
+
+</html>
