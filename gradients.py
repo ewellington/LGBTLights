@@ -1,20 +1,5 @@
 #import colour
 import colorsys
-import sys
-import csv
-
-
-def write_to_csv(gradient, filename):
-    with open(filename, 'w') as csvfile:
-        fieldnames = ['hue','sat','val']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-        writer.writeheader()
-
-        for x in gradient:
-            #print(x)
-            writer.writerow(x)
-
 
 def colour_conversion(gradient):
     converted_gradient = []
@@ -75,13 +60,24 @@ def poly_gradient(colour_list, step_size):
     return gradient
 
 
+def darken(hexcolor, factor=0.2):
+    rgb = hex_to_RGB(hexcolor)
+    h, l, s = colorsys.rgb_to_hls(rgb[0] / 255.0, rgb[1] / 255.0, rgb[2] / 255.0)
+    l = max(min(l * factor, 1.0), 0.0)
+    r, g, b = colorsys.hls_to_rgb(h, l, s)
+
+    print(r*255,g*255,b*255)
+
+    return RGB_to_hex([round(r*255,0), round(g*255,0), round(b*255,0)])
+
+
 def presets(key='pride',step_size='10'):
     pride_flags = {
-        'bi' : ["#D60270", "#9B4F96", "#0038A8", "#D60270"],
+        'bi' : ["#ff0040", "#ff00ff", "#0000ff", "#ff0040"],
         'trans' : ["#55CDFC", "#FFFFFF", "#f96bf5", "#55CDFC"],
-        'pan' : ["#FF1B8D", "#FFDA00", "#1BB3FF", "#FF1B8D"],
-        'pride' : ["#FF0000", "#FFA52C", "#FFFF41", "#17ea1a", "#0000F9", "#86007D","#FF0000"],
+        'pan' : ["#FF1B8D", "#FFFF00", "#1BB3FF", "#FF1B8D"],
+        'pride' : ["#FF0000", "#ff4800", "#FFFF00", "#00ff00", "#0000ff", "#ff00ff","#FF0000"],
         'lesbian' : ["#D63226","#F17628","#F79858","#FFFFFF","#D162A4","#BA5895","#A42268","#D63226"]
     }
 
-    return colour_conversion(poly_gradient(pride_flags[key], step_size))
+    return poly_gradient(pride_flags[key], step_size)

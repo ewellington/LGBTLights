@@ -58,5 +58,5 @@ function sendHSVData() {
 
   xhttp.open("POST", "/send_req", true);
   xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send(JSON.stringify(colorPicker.color.hsv));
+  xhttp.send(JSON.stringify({"colour":colorPicker.color.hexString}));
 }

@@ -1,11 +1,11 @@
 from flask import Flask, render_template
 from flask import request
 
-import serial
 import sys
 import time
 
 import gradients
+from ledstrip import LEDStrip
 
 app = Flask(__name__)
 cycler = False
@@ -29,13 +29,12 @@ def gradient_cycler(gradient):
     global period
 
     if gradient[0] == '#':
-        colour_list = gradients.colour_conversion(gradients.poly_gradient([gradient, "#000000", gradient], step_size))
+        colour_list = gradients.poly_gradient([gradient, gradients.darken(gradient), gradient], step_size)
         while cycler:
             for x in colour_list:
                 if cycler == False:
                     return 'Stopped'
-                hsv_color = "{},{},{}\n".format( x['hue'], x['sat'], x['val'] )
-                ser.write(hsv_color.encode())
+                strip.setcolourrgb(x[0],x[1],x[2])
                 time.sleep(period)
 
     else:
@@ -44,8 +43,7 @@ def gradient_cycler(gradient):
             for x in colour_list:
                 if cycler == False:
                     return 'Stopped'
-                hsv_color = "{},{},{}\n".format( x['hue'], x['sat'], x['val'] )
-                ser.write(hsv_color.encode())
+                strip.setcolourrgb(x[0],x[1],x[2])
                 time.sleep(period)
 
 
@@ -60,11 +58,10 @@ def postJsonHandler():
     for key in content:
         print("Key: {} -> Content: {}".format(key,content[key]))
 
-    if 'h' in content:
+    if 'colour' in content.keys():
         cycler = False
-        hsv_color = "{0:.0f},{1:.0f},{2:.0f}\n".format( ((content['h']/360)*255), ((content['s']/100)*255), ((content['v']/100)*255) )
-        print(hsv_color)
-        ser.write(hsv_color.encode())
+        print(content['colour'])
+        strip.setcolourhex(content['colour'][1:])
         return 'Completed Successfully'
     elif 'period' in content.keys():
         period = float(content['period'])
@@ -86,11 +83,10 @@ def main():
 
 
 if __name__ == "__main__":
-    step_size = int(sys.argv[3])
+    step_size = int(sys.argv[2])
     period = 0.05
-
-    ser = serial.Serial(sys.argv[2], 19200, timeout=0,                     parity=serial.PARITY_EVEN, rtscts=1)
-    print(ser.read(100))
+    CLK = 18
+    DAT = 17
+    strip = LEDStrip(CLK, DAT)
 
     app.run(host=sys.argv[1], port=80)
-    ser.close()
