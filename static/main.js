@@ -1,7 +1,7 @@
 // Create a new color picker instance
 // https://iro.js.org/guide.html#getting-started
 var colorPicker = new iro.ColorPicker('#color-picker-container', {
-  width: 500,
+  width: 380,
   color: "rgb(255, 0, 0)",
   borderWidth: 1,
   borderColor: "#fff",

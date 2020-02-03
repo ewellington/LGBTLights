@@ -8,15 +8,7 @@ html {
 }
 
 body {
-  margin: 0;
-  !   font-size: 16px;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  padding: 1em;
-  padding-bottom: 5em;
-  background-color: #282C34;
+  background: #0d0e0e linear-gradient(#282C34, #0d0e0e);
   font-family: 'Montserrat', sans-serif;
   color: #eee;
 }
