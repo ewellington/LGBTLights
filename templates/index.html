@@ -3,18 +3,21 @@
 
 <head>
   <title>✨🏳️‍🌈 LGBTLights 🏳️‍🌈✨</title>
-  <link rel="stylesheet" href="/static/style.css">
-  <link rel="stylesheet" media="screen and (min-device-width: 801px)" href="desktop.css" />
-  <link rel="stylesheet" media="screen and (max-device-width: 800px)" href="mobile.css" />
+  <link rel="stylesheet" media="screen and (min-device-width: 481px)" href="/static/desktop.css" />
+  <link rel="stylesheet" media="screen and (max-device-width: 480px)" href="/static/mobile.css" />
 </head>
 
 <body>
-  <h1>✨🏳️‍🌈 LGBTLights 🏳️‍🌈✨</h1>
-  <div id="color-picker-container" class="center"></div>
-
-  <h2 id="status">Started LEDs!</h2>
+  <main>
 
   <div class="row">
+    <h1>✨🏳️‍🌈 LGBTLights 🏳️‍🌈✨</h1>
+    <div id="color-picker-container" class="center"></div>
+  </div>
+
+
+  <div class="row">
+    <h2 id="status">Started LEDs!</h2>
     <div class="column">
       <div class="center">
         <div id="color_swatch" class="button"></div>
@@ -66,9 +69,27 @@
     </div>
   </div>
 
+  <img id="rainbow" src="/static/rainbow.svg">
 
   <script src="/static/iro.min.js"></script>
   <script src="/static/main.js" charset="utf-8"></script>
+
+  <script>
+  // CSS Stuff
+  // Resizes body element so the gradient actually reaches to the bottom of the browser (mobile only issue)
+  function jsUpdateSize(){
+      // Get the dimensions of the viewport
+      var height = window.innerHeight ||
+                   document.documentElement.clientHeight ||
+                   document.body.clientHeight;
+
+      document.getElementById("background").style.height = height; // Change height of body
+      console.log(height)
+  };
+  window.onload = jsUpdateSize;       // When the page first loads
+  window.onresize = jsUpdateSize;     // When the browser changes size
+  </script>
+</main>
 </body>
 
 </html>
