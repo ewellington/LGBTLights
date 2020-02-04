@@ -5,12 +5,11 @@
 
 html {
   text-size-adjust: 100%;
-  background-image: linear-gradient(#282C34, #0d0e0e);
+  background-image: linear-gradient(#282C34, #0d0e0e) fixed;
   height: 100%;
 }
 
 body {
-  overflow: none;
   margin: 0;
   flex-direction: column;
   align-content: center;
