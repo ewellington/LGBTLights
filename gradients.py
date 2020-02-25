@@ -74,7 +74,7 @@ def darken(hexcolor, factor=0.2):
 def presets(key='pride',step_size='10'):
     pride_flags = {
         'bi' : ["#ff0040", "#ff00ff", "#0000ff", "#ff0040"],
-        'trans' : ["#55CDFC", "#FFFFFF", "#f96bf5", "#55CDFC"],
+        'trans' : ["#55CDFC", "#FFFFFF", "#FF0090", "#55CDFC"],
         'pan' : ["#FF1B8D", "#FFFF00", "#1BB3FF", "#FF1B8D"],
         'pride' : ["#FF0000", "#ff4800", "#FFFF00", "#00ff00", "#0000ff", "#ff00ff","#FF0000"],
         'lesbian' : ["#D63226","#F17628","#F79858","#FFFFFF","#D162A4","#BA5895","#A42268","#D63226"]

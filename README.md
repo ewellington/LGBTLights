@@ -5,6 +5,7 @@ flag gradients (hence the name).
 ## Dependancies
 Install these dependancies first before running LGBTLights
 - flask
+- python3-rpi.gpio
 
 ## TODO
 - Transfer flask app to a production server
@@ -16,4 +17,4 @@ Color picker from https://github.com/jaames/iro.js
 
 Made using Flask.
 
-https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all
+I have no idea who wrote `ledstrip.py`, please forgive me! If you do know who wrote it, please email me so I can credit them.
